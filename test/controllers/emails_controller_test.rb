@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class EmailsControllerTest < ActionDispatch::IntegrationTest
-  test "should create email" do
+  test "should send email" do
     payload = {
       to: 'email@example.com',
       to_name: 'Test User',

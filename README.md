@@ -21,7 +21,12 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 Mailgun email service
 - create account
-- add api key to secrets
+- edit `~/.bashrc` and add the following lines
+1. export MAILGUN_USERNAME=YOUR_USER_NAME
+1. export MAILGUN_API_KEY=YOUR_API_KEY
+1. export MAILGUN_DOMAIN_NAME=YOUR_MAILGUN_DOMAINNAME
+- run `source ~/.bashrc` in your terminal
+
 
 * Deployment instructions
 

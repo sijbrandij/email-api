@@ -28,4 +28,3 @@ class EmailsController < BaseApiController
     # TODO: validate email formats
   end
 end
-
