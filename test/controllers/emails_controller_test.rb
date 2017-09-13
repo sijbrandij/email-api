@@ -27,4 +27,17 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     post "/email", params: payload.to_json
     assert_response :bad_request
   end
+  
+  test "should not accept empty values" do
+    payload = {
+      to: 'email@example.com',
+      to_name: ' ',
+      from: 'brightwheel@example.com',
+      from_name: 'Brightwheel',
+      subject: 'A message for you',
+      body: '<h1>Your bill</h1><p>$10</p>'
+    }
+    post "/email", params: payload.to_json
+    assert_response :bad_request
+  end
 end
