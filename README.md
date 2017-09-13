@@ -16,7 +16,7 @@ Things you may want to cover:
 The application does not use a database
 
 * How to run the test suite
-`bin/rails test`
+The testsuite is built in MiniTest. To run the entire testsuite, run `bin/rails test` in your terminal.
 
 * Services (job queues, cache servers, search engines, etc.)
 Mailgun email service
@@ -29,4 +29,7 @@ Mailgun email service
 
 * Deployment instructions
 
-* ...
+* Rationale
+- I have stuck to most Rails conventions (use MiniTest, which is built-in test engine)
+- I chose to create a Service Object to send the email, this makes it easier to test and maintain, and separates that logic from the controller that receives the JSON request
+- 
