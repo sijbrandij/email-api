@@ -1,4 +1,6 @@
-class EmailComposerService  
+class EmailComposerService
+  require 'rest-client'
+  
   def initialize(params)
     @to = params['to']
     @to_name = params['to_name']
@@ -9,9 +11,13 @@ class EmailComposerService
   end
   
   def send
-    response = %x{ curl -s --user "api:key-#{ENV['MAILGUN_API_KEY']}" "https://api.mailgun.net/v3/#{ENV['MAILGUN_DOMAIN_NAME']}/messages" -F from="#{@from_name} <#{@from}>" -F to="#{@to_name} <#{@to}>" -F subject="#{@subject}" -F text="#{@body}" }
-    response = JSON.parse(response)
-    response["message"] == "Queued. Thank you."
+    response = RestClient.post "https://api:#{ENV['MAILGUN_API_KEY']}"\
+    "@api.mailgun.net/v3/#{ENV["MAILGUN_DOMAIN_NAME"]}/messages",
+    :from => "#{@from_name} <#{@from}>",
+    :to => "#{@to}",
+    :subject => "#{@subject}",
+    :text => "#{@body}"
+    response.code == 200
   end
 end
 
