@@ -1,9 +1,14 @@
 class EmailsController < BaseApiController
-  before_action :validate_keys
-  before_action :validate_input
+  before_action :validate_keys, only: [:create]
+  before_action :validate_input, only: [:create]
   
   def create
-    head :ok
+    email = EmailComposerService.new(@json)
+    if email.send
+      head :ok
+    else
+      head :error
+    end
   end
   
   private
@@ -19,5 +24,8 @@ class EmailsController < BaseApiController
     if @json.values.select{|v| v.blank? }.any?
       head :bad_request
     end
+    
+    # TODO: validate email formats
   end
 end
+

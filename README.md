@@ -6,6 +6,7 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+2.3.1p112
 
 * System dependencies
 
@@ -18,6 +19,9 @@ Things you may want to cover:
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
+Mailgun email service
+- create account
+- add api key to secrets
 
 * Deployment instructions
 
