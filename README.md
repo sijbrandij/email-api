@@ -8,13 +8,13 @@ The application provides a '/email' endpoint, which accepts a json POST request,
 2.3.1p112
 
 ### System dependencies
-listen (~> 3.0.5)
-pry
-puma (~> 3.0)
-rails (~> 5.0.6)
-rest-client
-spring
-spring-watcher-listen (~> 2.0.0)
+- listen (~> 3.0.5)
+- pry
+- puma (~> 3.0)
+- rails (~> 5.0.6)
+- rest-client
+- spring
+- spring-watcher-listen (~> 2.0.0)
 
 ### Installation
 1. Clone the git repo to your own machine
