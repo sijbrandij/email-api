@@ -18,8 +18,8 @@ The application provides a '/email' endpoint, which accepts a json POST request,
 
 ### Installation
 1. Clone the git repo to your own machine
-1. `cd email/`
-1. `bundle install`
+2. `cd email/`
+3. `bundle install`
 This should install the application on your machine.
 To start using the application, start your server by running `bin/rails server` in your terminal.
 
