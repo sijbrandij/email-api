@@ -3,7 +3,7 @@ class EmailsController < BaseApiController
   before_action :validate_input, only: [:create]
   
   def create
-    email = EmailComposerService.new(@json)
+    email = EmailDispatchService.new(@json)
     if email.send
       head :ok
     else

@@ -3,7 +3,7 @@ require 'test_helper'
 class EmailsControllerTest < ActionDispatch::IntegrationTest
   test "should send email" do
     payload = {
-      to: 'email@example.com',
+      to: 'karen.sijbrandij@gmail.com',
       to_name: 'Test User',
       from: 'brightwheel@example.com',
       from_name: 'Brightwheel',
@@ -16,7 +16,7 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
   
   test "should not accept bad keys" do
     payload = {
-      to: 'email@example.com',
+      to: 'karen.sijbrandij@gmail.com',
       to_name: 'Test User',
       from: 'brightwheel@example.com',
       from_name: 'Brightwheel',
@@ -30,7 +30,7 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
   
   test "should not accept empty values" do
     payload = {
-      to: 'email@example.com',
+      to: 'karen.sijbrandij@gmail.com',
       to_name: ' ',
       from: 'brightwheel@example.com',
       from_name: 'Brightwheel',
