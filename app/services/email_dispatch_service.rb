@@ -38,7 +38,7 @@ class EmailDispatchService
   def generate_key(type)
     "#{provider}_#{type.upcase}"
   end
-  
+
   def api_key
     ENV[generate_key('api_key')]
   end
