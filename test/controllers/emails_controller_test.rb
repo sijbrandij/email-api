@@ -53,6 +53,9 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     }
     post "/email", params: payload.to_json
     assert_response :service_unavailable
+  end
+  
+  def teardown
     ENV['SERVICE_PROVIDER'] = 'MAILGUN'
   end
 end

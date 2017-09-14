@@ -44,7 +44,6 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     }
     email = EmailDispatchService.new(params)
     assert_equal true, email.send
-    ENV['SERVICE_PROVIDER'] = 'MAILGUN'
   end
   
   test 'should not send email and not raise error when non-implemented service provider is requested' do
@@ -59,6 +58,9 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     }
     email = EmailDispatchService.new(params)
     assert_nil email.send
+  end
+  
+  def teardown
     ENV['SERVICE_PROVIDER'] = 'MAILGUN'
   end
 end
