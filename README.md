@@ -1,9 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+This application provides an abstraction for sending emails through two email service providers, Mailgun and SendGrid.
+If one service goes down, the application can be switched over quickly to the other email service provider.
+The application provides a '/email' endpoint, which accepts a json POST request, which triggers a post request to one of the email service providers, which sends the email.
 
 * Ruby version
 2.3.1p112
@@ -17,15 +16,14 @@ rest-client
 spring
 spring-watcher-listen (~> 2.0.0)
 
+* Installation
+1. Clone the git repo to your own machine
+1. `cd email/`
+1. `bundle install`
+This should install the application on your machine.
+To start using the application, start your server by running `bin/rails server` in your terminal.
+
 * Configuration
-
-* Database
-The application does not use a database
-
-* How to run the test suite
-The testsuite is built in MiniTest. To run the entire testsuite, run `bin/rails test` in your terminal.
-
-* Services (job queues, cache servers, search engines, etc.)
 Mailgun & SendGrid email services
 - create accounts on both mailgun.com and sendgrid.net
 - edit `~/.bashrc` and add the following lines
@@ -34,11 +32,19 @@ Mailgun & SendGrid email services
 1. export MAILGUN_DOMAIN_NAME=YOUR_MAILGUN_DOMAINNAME
 1. export SENDGRID_API_KEY=YOUR_API_KEY
 1. export SENDGRID_DOMAIN_NAME=https://api.sendgrid.com/v3/mail/send
-- run `source ~/.bashrc` in your terminal to load the environment variables
+- run `source ~/.bashrc` in your terminal to load the environment variablesw
 
+* Database
+The application does not use a database.
+
+* How to run the test suite
+To run the testsuite, run `bin/rails test` in your terminal.
+
+* Services
+EmailDispatch is the service that handles the dispatch of the email to the service provider.
 To switch email service providers, simply change the value of `SERVICE_PROVIDER` to SENDGRID
 
 * Rationale
 - I have stuck to most Rails conventions (use MiniTest, which is built-in test engine)
-- I chose to create a Service Object to send the email, this makes it easier to test and maintain, and separates that logic from the controller that receives the JSON request
-- 
+- I chose to create a Service Object to send the email, this makes it easier to test and maintain, and separates that logic from the controller that receives the JSON request. This keeps the controller clean and simple.
+- If this were a production application, I would want to make sure that the `to` and `from` emails are valid. Since this email application is meant to be consumed by another (I assume internal) application, I would handle the email validation in the other application, where the email is possibly an attribute of a resource. If it is, that means we can use Devise#confirmable to ensure the email address is confirmed, and possibly some other Devise methods that validate the email format. I would not want to use a custom regex, as it is difficult to keep up with the changes in domain names and extensions. In addition, by using Devise#confirmable, we know for certain that the user has access to the email account they submit to our application (and thus will have access to the email we're trying to send them).
