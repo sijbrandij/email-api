@@ -17,7 +17,7 @@ The application provides a '/email' endpoint, which accepts a json POST request,
 - spring-watcher-listen (~> 2.0.0)
 
 ### Installation
-1. Clone the git repo to your own machine
+1. Clone the git repo to your own machine `git clone git@github.com:sijbrandij/email-api.git`
 2. `cd email/`
 3. `bundle install`
 This should install the application on your machine.
