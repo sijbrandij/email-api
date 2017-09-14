@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class EmailDispatchServiceTest < ActiveSupport::TestCase
-  test 'should initialize service and assign variables' do
+  def test_that_initialize_assigns_variables
     params = {
       'to' => 'karen.sijbrandij@gmail.com',
       'to_name' => 'Test User',
@@ -19,7 +19,7 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     assert_not_nil email.instance_values['body']
   end
   
-  test 'should send an email using mailgun' do
+  def test_that_send_sends_email_through_mailgun
     params = {
       'to' => 'karen.sijbrandij@gmail.com',
       'to_name' => 'Test User',
@@ -32,7 +32,7 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     assert_equal true, email.send
   end
   
-  test 'should send an email using sendgrid' do
+  def test_that_send_sends_email_through_sendgrid
     ENV['SERVICE_PROVIDER'] = 'SENDGRID'
     params = {
       'to' => 'karen.sijbrandij@gmail.com',
@@ -46,7 +46,7 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     assert_equal true, email.send
   end
   
-  test 'should not send email and not raise error when non-implemented service provider is requested' do
+  def test_that_email_is_not_sent_with_unsupported_service_provider
     ENV['SERVICE_PROVIDER'] = 'TWILIO'
     params = {
       'to' => 'karen.sijbrandij@gmail.com',
