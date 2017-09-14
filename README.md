@@ -24,7 +24,7 @@ This should install the application on your machine.
 To start using the application, start your server by running `bin/rails server` in your terminal.
 
 ### Configuration
-Mailgun & SendGrid email services
+To send email using Mailgun & SendGrid email services:
 - create accounts on both mailgun.com and sendgrid.net
 - edit `~/.bashrc` and add the following lines
 ```
