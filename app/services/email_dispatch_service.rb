@@ -21,10 +21,10 @@ class EmailDispatchService
       response.code == 200
     elsif provider == 'SENDGRID'
       response = RestClient.post "#{domain_name}", 
-      data.to_json,
-      :content_type => :json,
-      :accept => :json,
-      :Authorization=> "Bearer #{api_key}"
+        data_for_sendgrid.to_json,
+        :content_type => :json,
+        :accept => :json,
+        :Authorization=> "Bearer #{api_key}"
       response.code == 202
     end
   end
@@ -53,7 +53,7 @@ class EmailDispatchService
     end
   end
   
-  def data
+  def data_for_sendgrid
     { 'personalizations':
       [
         {
