@@ -79,6 +79,3 @@ class EmailDispatchService
     }
   end
 end
-
-# email = EmailDispatchService.new({'to' => 'karen.sijbrandij@gmail.com', 'to_name' => 'Some User', 'from' => 'brightwheel@example.com', 'from_name' => 'Brightwheel', 'subject' => 'A message for you!', 'body' => 'Some body'})
-# email.send

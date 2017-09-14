@@ -1,10 +1,5 @@
 class BaseApiController < ApplicationController
-  before_action :parse_request, except: [:thanks]
-  
-  
-  def thanks
-    render json: {"message" => "Queued. Thank you."}.to_json
-  end
+  before_action :parse_request
   
   private
   
