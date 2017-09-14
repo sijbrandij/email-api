@@ -19,7 +19,7 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     assert_not_nil email.instance_values['body']
   end
   
-  test 'should send an email' do
+  test 'should send an email using mailgun' do
     params = {
       'to' => 'karen.sijbrandij@gmail.com',
       'to_name' => 'Test User',
@@ -30,5 +30,20 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     }
     email = EmailDispatchService.new(params)
     assert_equal true, email.send
+  end
+  
+  test 'should send an email using sendgrid' do
+    ENV['SERVICE_PROVIDER'] = 'SENDGRID'
+    params = {
+      'to' => 'karen.sijbrandij@gmail.com',
+      'to_name' => 'Test User',
+      'from' => 'anotheruser@example.com',
+      'from_name' => 'Another User',
+      'subject' => 'A message for you',
+      'body' => 'Your bill $10'
+    }
+    email = EmailDispatchService.new(params)
+    assert_equal true, email.send
+    ENV['SERVICE_PROVIDER'] = 'MAILGUN'
   end
 end
