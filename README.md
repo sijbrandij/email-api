@@ -31,8 +31,8 @@ To send email using Mailgun & SendGrid email services:
 - edit `~/.bashrc` and add the following lines
 ```
 export SERVICE_PROVIDER=MAILGUN
-export MAILGUN_API_KEY=YOUR_API_KEY
-export MAILGUN_DOMAIN_NAME=YOUR_MAILGUN_DOMAINNAME
+export MAILGUN_API_KEY=https://api:YOUR_API_KEY
+export MAILGUN_DOMAIN_NAME=@api.mailgun.net/v3/YOUR_MAILGUN_DOMAINNAME/messages
 export SENDGRID_API_KEY=YOUR_API_KEY
 export SENDGRID_DOMAIN_NAME=https://api.sendgrid.com/v3/mail/send
 ```

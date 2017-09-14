@@ -36,21 +36,11 @@ class EmailDispatchService
   end
   
   def api_key
-    case provider
-    when "MAILGUN"
-      "https://api:".concat(ENV["MAILGUN_API_KEY"])
-    when "SENDGRID"
-      ENV['SENDGRID_API_KEY']
-    end
+    ENV["#{provider}_API_KEY"]
   end
   
   def domain_name
-    case provider
-    when "MAILGUN"
-      "@api.mailgun.net/v3/"+ENV['MAILGUN_DOMAIN_NAME']+"/messages"
-    when "SENDGRID"
-      ENV['SENDGRID_DOMAIN_NAME']
-    end
+    ENV["#{provider}_DOMAIN_NAME"]
   end
   
   def data_for_sendgrid
