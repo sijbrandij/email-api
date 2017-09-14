@@ -35,12 +35,16 @@ class EmailDispatchService
     @provider ||= ENV['SERVICE_PROVIDER']
   end
   
+  def generate_key(type)
+    "#{provider}_#{type.upcase}"
+  end
+  
   def api_key
-    ENV["#{provider}_API_KEY"]
+    ENV[generate_key('api_key')]
   end
   
   def domain_name
-    ENV["#{provider}_DOMAIN_NAME"]
+    ENV[generate_key('domain_name')]
   end
   
   def data_for_sendgrid
