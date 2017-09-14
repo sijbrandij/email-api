@@ -5,8 +5,8 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     payload = {
       to: 'karen.sijbrandij@gmail.com',
       to_name: 'Test User',
-      from: 'brightwheel@example.com',
-      from_name: 'Brightwheel',
+      from: 'anotheruser@example.com',
+      from_name: 'Another User',
       subject: 'A message for you',
       body: '<h1>Your bill</h1><p> $10</p>'
     }
@@ -18,8 +18,8 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     payload = {
       to: 'karen.sijbrandij@gmail.com',
       to_name: 'Test User',
-      from: 'brightwheel@example.com',
-      from_name: 'Brightwheel',
+      from: 'anotheruser@example.com',
+      from_name: 'Another User',
       subject: 'A message for you',
       body: '<h1>Your bill</h1><p> $10</p>',
       bad_key: "I don't belong here!"
@@ -32,8 +32,8 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     payload = {
       to: 'karen.sijbrandij@gmail.com',
       to_name: ' ',
-      from: 'brightwheel@example.com',
-      from_name: 'Brightwheel',
+      from: 'anotheruser@example.com',
+      from_name: 'Another User',
       subject: 'A message for you',
       body: '<h1>Your bill</h1><p> $10</p>'
     }
