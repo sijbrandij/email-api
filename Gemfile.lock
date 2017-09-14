@@ -40,7 +40,6 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     builder (3.2.3)
-    byebug (9.1.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     domain_name (0.5.20170404)
@@ -136,7 +135,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   listen (~> 3.0.5)
   pry
   puma (~> 3.0)
@@ -144,7 +142,6 @@ DEPENDENCIES
   rest-client
   spring
   spring-watcher-listen (~> 2.0.0)
-  tzinfo-data
 
 BUNDLED WITH
    1.14.6
