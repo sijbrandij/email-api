@@ -15,7 +15,7 @@ class EmailDispatchService
       response = RestClient.post "#{api_key}"\
         "#{domain_name}",
         :from => "#{@from_name} <#{@from}>",
-        :to => "#{@to}",
+        :to => "#{@to_name} <#{@to}>",
         :subject => "#{@subject}",
         :text => "#{@body}"
       response.code == 200
