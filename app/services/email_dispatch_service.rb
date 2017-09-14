@@ -11,17 +11,72 @@ class EmailDispatchService
   end
   
   def send
-    begin
-    response = RestClient.post "https://api:#{ENV['MAILGUN_API_KEY']}"\
-      "@api.mailgun.net/v3/#{ENV['MAILGUN_DOMAIN_NAME']}/messages",
-      :from => "#{@from_name} <#{@from}>",
-      :to => "#{@to}",
-      :subject => "#{@subject}",
-      :text => "#{@body}"
-    rescue RestClient::ExceptionWithResponse => e
-      puts e.response
+    if provider == 'MAILGUN'
+      response = RestClient.post "#{api_key}"\
+        "#{domain_name}",
+        :from => "#{@from_name} <#{@from}>",
+        :to => "#{@to}",
+        :subject => "#{@subject}",
+        :text => "#{@body}"
+      response.code == 200
+    elsif provider == 'SENDGRID'
+      response = RestClient.post "#{domain_name}", 
+      data.to_json,
+      :content_type => :json,
+      :accept => :json,
+      :Authorization=> "Bearer #{api_key}"
+      response.code == 202
     end
-    response.code == 200
+  end
+  
+  private
+  
+  def provider
+    @provider ||= ENV['SERVICE_PROVIDER']
+  end
+  
+  def api_key
+    case provider
+    when "MAILGUN"
+      "https://api:".concat(ENV["MAILGUN_API_KEY"])
+    when "SENDGRID"
+      ENV['SENDGRID_API_KEY']
+    end
+  end
+  
+  def domain_name
+    case provider
+    when "MAILGUN"
+      "@api.mailgun.net/v3/"+ENV['MAILGUN_DOMAIN_NAME']+"/messages"
+    when "SENDGRID"
+      ENV['SENDGRID_DOMAIN_NAME']
+    end
+  end
+  
+  def data
+    { 'personalizations':
+      [
+        {
+          'to': [
+            {
+              'email': @to,
+              'name': @to_name
+            }
+          ]
+        }
+      ],
+      'from': {
+        'email': @from,
+        'name': @from_name
+      },
+      'subject': @subject,
+      'content': [
+        {
+          'type': 'text/plain',
+          'value': @body
+        }
+      ]
+    }
   end
 end
 

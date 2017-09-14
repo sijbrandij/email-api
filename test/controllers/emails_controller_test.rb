@@ -8,7 +8,7 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
       from: 'brightwheel@example.com',
       from_name: 'Brightwheel',
       subject: 'A message for you',
-      body: '<h1>Your bill</h1><p>$10</p>'
+      body: '<h1>Your bill</h1><p> $10</p>'
     }
     post "/email", params: payload.to_json
     assert_response :success
@@ -21,7 +21,7 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
       from: 'brightwheel@example.com',
       from_name: 'Brightwheel',
       subject: 'A message for you',
-      body: '<h1>Your bill</h1><p>$10</p>',
+      body: '<h1>Your bill</h1><p> $10</p>',
       bad_key: "I don't belong here!"
     }
     post "/email", params: payload.to_json
@@ -35,7 +35,7 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
       from: 'brightwheel@example.com',
       from_name: 'Brightwheel',
       subject: 'A message for you',
-      body: '<h1>Your bill</h1><p>$10</p>'
+      body: '<h1>Your bill</h1><p> $10</p>'
     }
     post "/email", params: payload.to_json
     assert_response :bad_request
