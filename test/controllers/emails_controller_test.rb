@@ -40,4 +40,19 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
     post "/email", params: payload.to_json
     assert_response :bad_request
   end
+  
+  test "should not send email when non-implemented provider is selected" do
+    ENV['SERVICE_PROVIDER'] = 'TWILIO'
+    payload = {
+      to: 'karen.sijbrandij@gmail.com',
+      to_name: 'Test User',
+      from: 'anotheruser@example.com',
+      from_name: 'Another User',
+      subject: 'A message for you',
+      body: '<h1>Your bill</h1><p> $10</p>'
+    }
+    post "/email", params: payload.to_json
+    assert_response :service_unavailable
+    ENV['SERVICE_PROVIDER'] = 'MAILGUN'
+  end
 end

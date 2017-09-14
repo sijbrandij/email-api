@@ -7,7 +7,7 @@ class EmailsController < BaseApiController
     if email.send
       head :ok
     else
-      head :error
+      head :service_unavailable
     end
   end
   

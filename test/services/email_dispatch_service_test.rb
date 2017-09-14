@@ -46,4 +46,19 @@ class EmailDispatchServiceTest < ActiveSupport::TestCase
     assert_equal true, email.send
     ENV['SERVICE_PROVIDER'] = 'MAILGUN'
   end
+  
+  test 'should not send email and not raise error when non-implemented service provider is requested' do
+    ENV['SERVICE_PROVIDER'] = 'TWILIO'
+    params = {
+      'to' => 'karen.sijbrandij@gmail.com',
+      'to_name' => 'Test User',
+      'from' => 'anotheruser@example.com',
+      'from_name' => 'Another User',
+      'subject' => 'A message for you',
+      'body' => 'Your bill $10'
+    }
+    email = EmailDispatchService.new(params)
+    assert_nil email.send
+    ENV['SERVICE_PROVIDER'] = 'MAILGUN'
+  end
 end
