@@ -29,7 +29,7 @@ class EmailDispatchService
     end
   end
   
-  private
+private
   
   def provider
     @provider ||= ENV['SERVICE_PROVIDER']
