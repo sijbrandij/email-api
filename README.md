@@ -1,11 +1,13 @@
 # README
 
 This application provides an abstraction for sending emails through two email service providers, Mailgun and SendGrid.
+
 If one service goes down, the application can be switched over quickly to the other email service provider.
-The application provides a '/email' endpoint, which accepts a json POST request, which triggers a post request to one of the email service providers, which sends the email.
+
+The application provides a `/email` endpoint, which accepts a json POST request, which triggers a post request to one of the email service providers, which sends the email.
 
 ### Ruby version
-2.3.1p112
+2.3.1-p112
 
 ### System dependencies
 - listen (~> 3.0.5)
