@@ -34,7 +34,7 @@ export MAILGUN_DOMAIN_NAME=YOUR_MAILGUN_DOMAINNAME
 export SENDGRID_API_KEY=YOUR_API_KEY
 export SENDGRID_DOMAIN_NAME=https://api.sendgrid.com/v3/mail/send
 ```
-- run `source ~/.bashrc` in your terminal to load the environment variablesw
+- run `source ~/.bashrc` in your terminal to load the environment variables
 
 ### Database
 The application does not use a database.
